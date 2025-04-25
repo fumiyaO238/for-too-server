@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: for-too
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: for-too
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - '3310:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - nest-network
+    restart: always
+
+  app:
+    build: .
+    container_name: nest-app
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: nest_user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: for-too
+    ports:
+      - '3010:3010'
+    networks:
+      - nest-network
+    restart: always
+
+volumes:
+  mysql-data:
+
+networks:
+  nest-network:
+    driver: bridge
