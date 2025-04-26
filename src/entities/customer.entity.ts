@@ -28,29 +28,30 @@ export class Customer {
   @Column({ length: 30 })
   lastNameKana: string;
 
-  @Column('date')
-  birthDate: Date;
+  @Column({ type: 'date', nullable: true })
+  birthDate?: Date;
 
-  @Column({ length: 191 })
-  address: string;
+  @Column({ length: 191, nullable: true })
+  address?: string;
 
   @Column({ length: 15, unique: true })
   tel: string;
 
-  @Column({ length: 191, unique: true })
-  email: string;
+  @Column({ length: 191, unique: true, nullable: true })
+  email?: string;
 
   @Column({
     type: 'varchar',
     length: 191,
+    nullable: true,
   })
-  password: string; // Hash値
+  password?: string; // Hash値
 
-  @Column({ length: 191, unique: true })
-  line: string;
+  @Column({ length: 191, unique: true, nullable: true })
+  line?: string;
 
-  @Column({ length: 191, unique: true })
-  instagram: string;
+  @Column({ length: 191, unique: true, nullable: true })
+  instagram?: string;
 
   @OneToMany(() => CustomerNote, (customerNote) => customerNote.customer)
   customerNotes: CustomerNote[];
