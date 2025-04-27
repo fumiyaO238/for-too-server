@@ -4,6 +4,8 @@ import {
   Column,
   Unique,
   OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { CustomerNote } from './customer-note.entity';
 
@@ -15,6 +17,12 @@ export class Customer {
 
   @Column({ type: 'char', length: 36 })
   uuid: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column({ length: 30 })
   firstName: string;

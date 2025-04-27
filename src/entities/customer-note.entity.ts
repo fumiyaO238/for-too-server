@@ -4,6 +4,8 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Customer } from './customer.entity'; // 顧客エンティティのインポート
 
@@ -11,6 +13,12 @@ import { Customer } from './customer.entity'; // 顧客エンティティのイ�
 export class CustomerNote {
   @PrimaryGeneratedColumn('uuid')
   uuid: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @ManyToOne(() => Customer)
   @JoinColumn({ name: 'customerId' })
