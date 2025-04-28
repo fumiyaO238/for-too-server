@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-user.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Controller('customer')
 export class CustomerController {
@@ -26,12 +27,12 @@ export class CustomerController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.customerService.findOne(+id);
+    return this.customerService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: any) {
-    return this.customerService.update(+id, updateCustomerDto);
+  update(@Param('id') id: string, @Body() dto: UpdateCustomerDto) {
+    return this.customerService.update(id, dto);
   }
 
   @Delete(':id')
