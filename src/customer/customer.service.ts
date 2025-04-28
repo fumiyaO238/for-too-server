@@ -43,8 +43,8 @@ export class CustomerService {
     return this.customerRepository.save(customer);
   }
 
-  findAll() {
-    return `This action returns all customers`;
+  async findAll(): Promise<Customer[]> {
+    return this.customerRepository.find();
   }
 
   findOne(id: number) {
