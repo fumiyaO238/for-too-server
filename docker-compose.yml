@@ -23,8 +23,8 @@ services:
     depends_on:
       - mysql
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
+      MYSQL_HOST: for-too
+      MYSQL_PORT: 3310
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: for-too

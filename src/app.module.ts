@@ -11,7 +11,7 @@ import { CustomerNote } from './entities/customer-note.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'for-too',
       port: 3306,
       username: 'root',
       password: 'password',

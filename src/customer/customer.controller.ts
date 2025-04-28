@@ -8,14 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
+import { CreateCustomerDto } from './dto/create-user.dto';
 
 @Controller('customer')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Post()
-  create(@Body() createCustomerDto: any) {
-    return this.customerService.create(createCustomerDto);
+  create(@Body() dto: CreateCustomerDto) {
+    return this.customerService.create(dto);
   }
 
   @Get()

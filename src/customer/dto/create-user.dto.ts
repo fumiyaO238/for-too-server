@@ -39,9 +39,6 @@ export class CreateCustomerDto {
   @IsEmail()
   email?: string;
 
-  @IsString()
-  password: string;
-
   @IsOptional()
   @IsString()
   line?: string;

@@ -37,7 +37,7 @@ export class Customer {
   lastNameKana: string;
 
   @Column({ type: 'date', nullable: true })
-  birthDate?: Date;
+  birthday?: Date;
 
   @Column({ length: 191, nullable: true })
   address?: string;
@@ -47,13 +47,6 @@ export class Customer {
 
   @Column({ length: 191, unique: true, nullable: true })
   email?: string;
-
-  @Column({
-    type: 'varchar',
-    length: 191,
-    nullable: true,
-  })
-  password?: string; // Hash値
 
   @Column({ length: 191, unique: true, nullable: true })
   line?: string;
