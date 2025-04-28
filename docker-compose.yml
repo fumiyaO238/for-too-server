@@ -25,11 +25,11 @@ services:
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
-      MYSQL_USER: nest_user
+      MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: for-too
     ports:
-      - '3010:3010'
+      - '3010:3000'
     networks:
       - nest-network
     restart: always
