@@ -13,7 +13,7 @@ import { CustomerNote } from './entities/customer-note.entity';
       type: 'mysql',
       host: 'mysql',
       port: 3306,
-      username: 'root',
+      username: 'user',
       password: 'password',
       database: 'for-too',
       entities: [Customer, CustomerNote],

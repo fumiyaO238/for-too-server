@@ -4,6 +4,8 @@ import {
   Column,
   Unique,
   OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { CustomerNote } from './customer-note.entity';
 
@@ -15,6 +17,12 @@ export class Customer {
 
   @Column({ type: 'char', length: 36 })
   uuid: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column({ length: 30 })
   firstName: string;
@@ -29,7 +37,7 @@ export class Customer {
   lastNameKana: string;
 
   @Column({ type: 'date', nullable: true })
-  birthDate?: Date;
+  birthday?: Date;
 
   @Column({ length: 191, nullable: true })
   address?: string;
@@ -39,13 +47,6 @@ export class Customer {
 
   @Column({ length: 191, unique: true, nullable: true })
   email?: string;
-
-  @Column({
-    type: 'varchar',
-    length: 191,
-    nullable: true,
-  })
-  password?: string; // Hash値
 
   @Column({ length: 191, unique: true, nullable: true })
   line?: string;
