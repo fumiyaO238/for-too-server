@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 const bcrypt = require('bcrypt');
 import { randomUUID } from 'crypto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Injectable()
 export class CustomerService {
@@ -47,12 +48,42 @@ export class CustomerService {
     return this.customerRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a customer with id ${id}`;
+  async findOne(uuid: string): Promise<Customer> {
+    const customer = await this.customerRepository.findOne({
+      where: { uuid },
+    });
+
+    if (!customer) {
+      throw new Error('Customer not found');
+    }
+
+    return customer;
   }
 
-  update(id: number, updateCustomerDto: any) {
-    return `This action updates a customer with id ${id}`;
+  async update(
+    uuid: string,
+    updateCustomerDto: UpdateCustomerDto,
+  ): Promise<Customer> {
+    const customer = await this.customerRepository.findOne({ where: { uuid } });
+
+    if (!customer) {
+      throw new Error('Customer not found');
+    }
+
+    customer.firstName = updateCustomerDto.firstName || customer.firstName;
+    customer.lastName = updateCustomerDto.lastName || customer.lastName;
+    customer.firstNameKana =
+      updateCustomerDto.firstNameKana || customer.firstNameKana;
+    customer.lastNameKana =
+      updateCustomerDto.lastNameKana || customer.lastNameKana;
+    customer.birthday = updateCustomerDto.birthday || customer.birthday;
+    customer.address = updateCustomerDto.address || customer.address;
+    customer.tel = updateCustomerDto.tel || customer.tel;
+    customer.email = updateCustomerDto.email || customer.email;
+    customer.line = updateCustomerDto.line || customer.line;
+    customer.instagram = updateCustomerDto.instagram || customer.instagram;
+
+    return this.customerRepository.save(customer);
   }
 
   remove(id: number) {
